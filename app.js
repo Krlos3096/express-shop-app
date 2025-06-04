@@ -1,5 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
+import path from "path";
+import __dirname from "./utils/path.js";
 
 // Importing routes
 import adminRoutes from "./routes/admin.js";
@@ -16,7 +18,7 @@ app.use(shopRoutes);
 
 // Handling 404 errors
 app.use((req, res, next) => {
-  res.status(404).send("<h1>Page Not Found</h1>");
+  res.status(404).sendFile(path.join(__dirname,'/views/404.html'));
 });
 
 app.listen(3000, () => {
