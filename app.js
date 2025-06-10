@@ -9,7 +9,7 @@ import shopRoutes from "./routes/shop.js";
 
 const app = express();
 
-app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 app.get('/favicon.ico', (req, res) => res.status(204));
