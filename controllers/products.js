@@ -1,37 +1,38 @@
 import Product from "../models/product.js";
 
 const getAddProduct = (req, res, next) => {
-  res.render('add-product', {
-    pageTitle: 'Add Product',
-    path: '/admin/add-product',
+  res.render("add-product", {
+    pageTitle: "Add Product",
+    path: "/admin/add-product",
     formsCSS: true,
     productCSS: true,
-    activeAddProduct: true
+    activeAddProduct: true,
   });
 };
 
 const showProductAdded = (req, res, next) => {
-    const product = new Product(req.body.title);
-    product.save();
-  res.redirect('/');
+  const product = new Product(req.body.title);
+  product.save();
+  res.redirect("/");
 };
 
 const getProducts = (req, res, next) => {
-    const products = Product.fetchAll();
-  res.render('shop', {
-    prods: products,
-    pageTitle: 'Shop',
-    path: '/',
-    hasProducts: products.length > 0,
-    activeShop: true,
-    productCSS: true
+  Product.fetchAll((products) => {
+    res.render("shop", {
+      prods: products,
+      pageTitle: "Shop",
+      path: "/",
+      hasProducts: products.length > 0,
+      activeShop: true,
+      productCSS: true,
+    });
   });
-}
+};
 
 const ProductsController = {
   getAddProduct,
   showProductAdded,
-  getProducts
+  getProducts,
 };
 
 export default ProductsController;
