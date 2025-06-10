@@ -4,12 +4,14 @@ import path from "path";
 
 const adminRoutes = express.Router();
 
+export const products = [];
+
 adminRoutes.get('/add-product',(req, res, next) => {
-  res.sendFile(path.join(__dirname, '/views/add-product.html'));
+  res.render('add-product', { products });
 });
 
 adminRoutes.post('/add-product',(req, res, next) => {
-  console.log("Product:", req.body);
+  products.push({ title: req.body.title });
   res.redirect('/');
 });
 
